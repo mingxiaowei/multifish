@@ -28,7 +28,7 @@ datadir="/data/sternsonlab/Zhenggang/2acq/output/M28C_LHA_S1"
 # Reducing the gb_per_core to 2 reduces total memory consumption but doubles processing time.
 #
 
-../main.nf \
+/home/m5wei/multifish/main.nf \
     -params-file "/home/m5wei/multifish/testrun/S1_stitching/S1_stitching.json" \
     --runtime_opts "-B $datadir -B $TMPDIR" \
     --shared_work_dir "$datadir" "$@"
