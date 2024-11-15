@@ -1,6 +1,6 @@
 {
     "shared_work_dir": "/data/sternsonlab/Zhenggang/2acq",
-    "data_manifest": "/data/sternsonlab/Zhenggang/2acq/output/M28C_LHA_S1/stitching",
+    "data_manifest": "/data/sternsonlab/Zhenggang/2acq/outputs/M28C_LHA_S1/stitching",
     "publish_dir": "",
     "acq_names": "M28C_LHA_S1",
     "ref_acq": "M28C_LHA_S1",
