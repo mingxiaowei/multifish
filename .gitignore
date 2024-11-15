@@ -17,4 +17,3 @@ mylocal
 node_modules
 .serverless
 .DS_Store
-testrun/**
