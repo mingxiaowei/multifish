@@ -10,7 +10,7 @@ build_args:
 template_args:
   flavor: java_maven
   build:
-    repo_url: https://github.com/saalfeldlab/stitching-spark.git
+    repo_url: https://github.com/mingxiaowei/stitching-spark.git
     command: mvn package
   java_maven:
     jdk_version: "8"
