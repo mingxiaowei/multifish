@@ -250,7 +250,8 @@ workflow stitch {
                 def n5_channels_args = entries_inputs_args(stitching_dir, channels, '-i', '-n5', '.json')
                 def darkfield_file_arg = params.darkfield_file && params.flatfield_file ? "--darkfield-file ${file(params.darkfield_file)}" : ''
                 def flatfield_file_arg = params.darkfield_file && params.flatfield_file  ? "--flatfield-file ${file(params.flatfield_file)}" : ''
-                return "${n5_channels_args} --2d --bins 256 ${darkfield_file_arg} ${flatfield_file_arg}"
+                def multichannel_correction_path_arg = params.multichannel_correction_path ? "--multichannel-correction-path ${params.multichannel_correction_path}" : ''
+                return "${n5_channels_args} --2d --bins 256 ${darkfield_file_arg} ${flatfield_file_arg} ${multichannel_correction_path_arg}"
             }
         )
         flatfield_done = run_flatfield_correction(
@@ -285,7 +286,8 @@ workflow stitch {
                 def retile_args = entries_inputs_args(stitching_dir, channels, '-i', '-n5', '.json')
                 def darkfield_file_arg = params.darkfield_file && params.flatfield_file ? "--darkfield-file ${file(params.darkfield_file)}" : ''
                 def flatfield_file_arg = params.darkfield_file && params.flatfield_file  ? "--flatfield-file ${file(params.flatfield_file)}" : ''
-                return "${retile_args} --size ${retile_z_size} ${darkfield_file_arg} ${flatfield_file_arg}"
+                def multichannel_correction_path_arg = params.multichannel_correction_path ? "--multichannel-correction-path ${params.multichannel_correction_path}" : ''
+                return "${retile_args} --size ${retile_z_size} ${darkfield_file_arg} ${flatfield_file_arg} ${multichannel_correction_path_arg}"
             }
         )
         retile_suffix = '-retiled'
@@ -324,7 +326,8 @@ workflow stitch {
             def ref_channel_arg = registration_channel ? "-r ${registration_channel}" : ''
             def darkfield_file_arg = params.darkfield_file && params.flatfield_file ? "--darkfield-file ${file(params.darkfield_file)}" : ''
             def flatfield_file_arg = params.darkfield_file && params.flatfield_file  ? "--flatfield-file ${file(params.flatfield_file)}" : ''
-            return "--stitch ${ref_channel_arg} ${retiled_n5_channels_args} ${correction_args} --mode '${stitching_mode}' --padding '${stitching_padding}' --blurSigma ${stitching_blur_sigma} ${darkfield_file_arg} ${flatfield_file_arg}"
+            def multichannel_correction_path_arg = params.multichannel_correction_path ? "--multichannel-correction-path ${params.multichannel_correction_path}" : ''
+            return "--stitch ${ref_channel_arg} ${retiled_n5_channels_args} ${correction_args} --mode '${stitching_mode}' --padding '${stitching_padding}' --blurSigma ${stitching_blur_sigma} ${darkfield_file_arg} ${flatfield_file_arg} ${multichannel_correction_path_arg}"
         }
     )
     def stitching_done = run_stitching(
@@ -357,7 +360,8 @@ workflow stitch {
             def fill_background_arg = params.with_fillBackground ? '--fill' : ''
             def darkfield_file_arg = params.darkfield_file && params.flatfield_file ? "--darkfield-file ${file(params.darkfield_file)}" : ''
             def flatfield_file_arg = params.darkfield_file && params.flatfield_file  ? "--flatfield-file ${file(params.flatfield_file)}" : ''
-            return "--fuse ${stitched_n5_channels_args} ${correction_args} --blending ${fill_background_arg} ${darkfield_file_arg} ${flatfield_file_arg}"
+            def multichannel_correction_path_arg = params.multichannel_correction_path ? "--multichannel-correction-path ${params.multichannel_correction_path}" : ''
+            return "--fuse ${stitched_n5_channels_args} ${correction_args} --blending ${fill_background_arg} ${darkfield_file_arg} ${flatfield_file_arg} ${multichannel_correction_path_arg}"
         }
     )
     def fuse_done = run_fuse(
