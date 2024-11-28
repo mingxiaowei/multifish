@@ -10,11 +10,12 @@ WORKDIR /tmp/app
 RUN git clone --branch ${STITCHING_SPARK_GIT_TAG} --depth 1 https://github.com/mingxiaowei/stitching-spark.git .
 RUN git submodule update --init --recursive
 RUN /usr/local/bin/buildinfo.sh
-RUN mvn package -DskipTests -X
+# RUN mvn package -DskipTests -X
 
 # Find the built jar, based on the version in the pom file
-RUN xq -r '.project.artifactId+"-"+.project.version+".jar"' pom.xml > filename \
-    && mv /tmp/app/target/`cat filename` app.jar
+# RUN xq -r '.project.artifactId+"-"+.project.version+".jar"' pom.xml > filename \
+#     && mv /tmp/app/target/`cat filename` app.jar
+COPY app_v1.jar /tmp/app/app.jar
 
 # Create final image
 FROM multifish/spark:3.0.1-hadoop3.2
