@@ -3,7 +3,7 @@
 
 # Staged build using builder container
 FROM janeliascicomp/builder:1.2.1 as builder
-ARG STITCHING_SPARK_GIT_TAG=1.11.0-rc2
+ARG STITCHING_SPARK_GIT_TAG=container-v1
 
 # Checkout and build the code
 WORKDIR /tmp/app
