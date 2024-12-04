@@ -1,12 +1,13 @@
 maru_version: 0.1.1
 name: stitching
-version: 1.3.0
+version: 1.4.0
 remotes:
 - multifish
 - registry.int.janelia.org/multifish
 - public.ecr.aws/janeliascicomp/multifish
+- docker.io/mingxiaowei
 build_args:
-  STITCHING_SPARK_GIT_TAG: master
+  STITCHING_SPARK_GIT_TAG: container-v1
 template_args:
   flavor: java_maven
   build:

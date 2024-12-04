@@ -3,7 +3,8 @@
 
 # Staged build using builder container
 FROM janeliascicomp/builder:1.2.1 as builder
-ARG STITCHING_SPARK_GIT_TAG=container-v1
+ARG STITCHING_SPARK_GIT_TAG=container-v1 
+# now this actually doesn't matter because app_v2.jar is provided 
 
 # Checkout and build the code
 WORKDIR /tmp/app
@@ -15,7 +16,7 @@ RUN /usr/local/bin/buildinfo.sh
 # Find the built jar, based on the version in the pom file
 # RUN xq -r '.project.artifactId+"-"+.project.version+".jar"' pom.xml > filename \
 #     && mv /tmp/app/target/`cat filename` app.jar
-COPY app_v1.jar /tmp/app/app.jar
+COPY app_v2.jar /tmp/app/app.jar
 
 # Create final image
 FROM multifish/spark:3.0.1-hadoop3.2
