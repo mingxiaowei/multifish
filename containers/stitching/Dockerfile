@@ -16,7 +16,7 @@ RUN /usr/local/bin/buildinfo.sh
 # Find the built jar, based on the version in the pom file
 # RUN xq -r '.project.artifactId+"-"+.project.version+".jar"' pom.xml > filename \
 #     && mv /tmp/app/target/`cat filename` app.jar
-COPY app_v2.jar /tmp/app/app.jar
+COPY app_v3.jar /tmp/app/app.jar
 
 # Create final image
 FROM multifish/spark:3.0.1-hadoop3.2
